@@ -5,10 +5,8 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=social_media
+    env_file:
+      - ./.env.dev
   web:
     build: ./backend
     command: python manage.py runserver 0.0.0.0:8000
