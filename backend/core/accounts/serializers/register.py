@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from drf_base64.fields import Base64ImageField
 
-from core.accounts.utils import User
+from core.accounts.utils.get_user_model import User
 
 
 class RegisterSerializer(serializers.ModelSerializer):
