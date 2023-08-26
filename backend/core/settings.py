@@ -49,8 +49,9 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'core.common',
     'core.accounts',
+    'core.common',
+    'core.friends',
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
@@ -126,11 +127,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'static-files'
+STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = BASE_DIR / 'media-files'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
