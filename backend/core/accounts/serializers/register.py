@@ -1,13 +1,14 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.password_validation import validate_password
+from drf_base64.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from drf_base64.fields import Base64ImageField
 
 from core.accounts.utils.get_user_model import User
+from core.common.mixins.request_user_serializer import RequestUserSerializerMixin
 
 
-class RegisterSerializer(serializers.ModelSerializer):
+class RegisterSerializer(RequestUserSerializerMixin, serializers.ModelSerializer):
     email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
     profile_picture = Base64ImageField(required=False)
     profile_cover = Base64ImageField(required=False)
@@ -29,8 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         ]
 
     def validate_password(self, value):
-        request = self.context.get('request')
-        validate_password(value, request.user)
+        validate_password(value, self.get_request_user())
         return value
 
     def validate(self, data):
