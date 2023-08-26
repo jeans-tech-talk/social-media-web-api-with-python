@@ -5,9 +5,11 @@ from django.urls import path, include
 from rest_framework import routers
 
 from core.accounts.views import UserViewSet
+from core.friends.views import FriendRequestViewSet
 
 router = routers.DefaultRouter()
 router.register(prefix=r'users', viewset=UserViewSet)
+router.register(prefix=r'friend-requests', viewset=FriendRequestViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
